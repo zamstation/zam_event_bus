@@ -1,0 +1,53 @@
+name: Build Package
+
+on:
+  push:
+    branches-ignore: ["**", temp]
+  pull_request:
+    branches-ignore: ["**", temp]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          path: workspace/code
+      - name: Install Dart
+        uses: dart-lang/setup-dart@v1
+      - name: Test
+        uses: zamstation/dart_package_deployer/actions/test@main
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          path: workspace/code
+      - name: Build
+        uses: zamstation/dart_package_deployer/actions/build@main
+      - name: Export Workspace
+        uses: actions/cache@v2
+        with:
+          path: workspace
+          key: build-${{ github.sha }}
+
+  dry_deploy:
+    name: Dry Deploy
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Import Workspace
+        uses: actions/cache@v2
+        with:
+          path: workspace
+          key: build-${{ github.sha }}
+      - name: Install Dart
+        uses: dart-lang/setup-dart@v1
+      - name: Dry Deploy
+        uses: zamstation/dart_package_deployer/actions/dry_deploy@main
