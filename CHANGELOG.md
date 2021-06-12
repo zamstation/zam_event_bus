@@ -1,5 +1,23 @@
 # 0.0.1
 
-  * Includes @component_1@.
-  * Includes @component_2@.
-  * Includes @component_3@.
+- Includes `EventBus`.
+- Includes `EventTransformer`.
+- Includes `Store`.
+- Includes the following transformers:
+  - `AsyncEventTransformer`
+  - `ReactiveEventTransformer`
+  - `EventMultiplier`
+  - `SavingAsyncEventTransformer`
+  - `SavingReactiveEventTransformer`
+  - `SavingEventMultiplier`
+  - `CustomTransformer`
+- Includes the following utilities:
+  - `UseCase`
+  - `BasicUseCase`
+  - `UseCaseBuilder`
+  - `UseCaseCompletedEvent`
+  - `UseCaseSucceededEvent`
+  - `UseCaseFailedEvent`
+  - `UseCaseEventTransformer`
+  - `SavingUseCaseEventTransformer`
+  - `CustomUseCaseEventTransformer`

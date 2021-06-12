@@ -1,0 +1,3 @@
+class UseCaseCompletedEvent {
+  const UseCaseCompletedEvent();
+}

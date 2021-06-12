@@ -1,14 +1,16 @@
-name: package_name
+name: zam_event_bus
 version: 0.0.1
-description: << Write your description here (not less than 60 characters). >>
+description: Event bus is a event based state management package for dart.
 homepage: https://zamstation.com
-repository: https://github.com/zamstation/package_name
+repository: https://github.com/zamstation/zam_event_bus
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  rxdart: ^0.27.1
+  zam_command_pattern: ^0.0.1
   zam_core: ^0.1.1
 
 dev_dependencies:
-  zam_test: ^0.0.2
+  zam_test: ^0.1.0
