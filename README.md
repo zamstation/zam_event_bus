@@ -3,7 +3,7 @@
 State Management Package  
   
 [![Version](https://img.shields.io/pub/v/zam_event_bus?color=%234287f5)](https://pub.dev/packages/zam_event_bus)
-[![Build](https://github.com/zamstation/zam_event_bus/actions/workflows/build.yml/badge.svg)](https://github.com/zamstation/zam_event_bus/actions/workflows/build.yml)
+[![Build](https://github.com/zamstation/zam_event_bus/actions/workflows/build.yaml/badge.svg)](https://github.com/zamstation/zam_event_bus/actions/workflows/build.yaml)
 [![Stars](https://img.shields.io/github/stars/zamstation/zam_event_bus.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/zamstation/zam_event_bus/stargazers)
 [![License](https://img.shields.io/github/license/zamstation/zam_event_bus)](https://pub.dev/packages/zam_event_bus/license)
 
