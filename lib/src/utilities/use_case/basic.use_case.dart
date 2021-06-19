@@ -1,5 +1,3 @@
-import 'package:rxdart/rxdart.dart';
-import 'package:zam_core/meta.dart';
 import 'package:zam_core/zam_core.dart';
 
 import 'use_case.dart';
@@ -16,10 +14,9 @@ abstract class BasicUseCase<EVENT extends Object, OUTPUT extends Object>
 
   @protected
   Stream<UseCaseCompletedEvent> prepareResponse(OUTPUT output) {
-    return output
-        .asStream()
+    return Stream.value(output)
         .map<UseCaseCompletedEvent>(succeededEventBuilder)
-        .onErrorResume((error, stackTrace) => _buildFailedEventStream(error));
+        .onErrorResume(_buildFailedEventStream);
   }
 
   @protected
@@ -27,7 +24,7 @@ abstract class BasicUseCase<EVENT extends Object, OUTPUT extends Object>
       Stream<OUTPUT> outputStream) {
     return outputStream
         .map<UseCaseCompletedEvent>(succeededEventBuilder)
-        .onErrorResume((error, stackTrace) => _buildFailedEventStream(error));
+        .onErrorResume(_buildFailedEventStream);
   }
 
   @protected
@@ -36,10 +33,13 @@ abstract class BasicUseCase<EVENT extends Object, OUTPUT extends Object>
     return outputFuture
         .asStream()
         .map<UseCaseCompletedEvent>(succeededEventBuilder)
-        .onErrorResume((error, stackTrace) => _buildFailedEventStream(error));
+        .onErrorResume(_buildFailedEventStream);
   }
 
-  Stream<UseCaseFailedEvent> _buildFailedEventStream(Object error) {
+  Stream<UseCaseFailedEvent> _buildFailedEventStream(
+    Object error,
+    StackTrace stackTrace,
+  ) {
     final exception = _filterException(error);
     final response = failedEventBuilder(exception);
     final stream = Stream.value(response);

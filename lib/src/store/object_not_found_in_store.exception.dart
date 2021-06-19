@@ -6,11 +6,10 @@ import 'package:zam_core/zam_core.dart';
 class ObjectNotFoundInStoreException extends NamedException {
   final String objectKey;
 
-  const ObjectNotFoundInStoreException(this.objectKey)
-      : super(
-          'Object with key \'$objectKey\' not found in store.',
-          solution:
-              'Please insert an object with key \'$objectKey\' before accessing it.',
-          severity: ExceptionSeverity.critical,
-        );
+  get problem => 'Object with key \'$objectKey\' not found in store.';
+  get solution =>
+      'Please insert an object with key \'$objectKey\' before accessing it.';
+  get severity => ExceptionSeverity.critical;
+
+  const ObjectNotFoundInStoreException(this.objectKey);
 }
