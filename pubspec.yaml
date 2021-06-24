@@ -1,5 +1,5 @@
 name: zam_event_bus
-version: 0.2.0
+version: 0.3.0
 description: Event bus is a event based state management package for dart.
 homepage: https://zamstation.com
 repository: https://github.com/zamstation/zam_event_bus

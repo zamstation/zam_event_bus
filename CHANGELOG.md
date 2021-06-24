@@ -1,3 +1,6 @@
+# 0.3.0
+- **BREAKING:** Fixed spelling mistake in `CustomTransformer` class name.
+
 # 0.2.0
 - **BREAKING:** Removed `key` from constructors of all the `EventTransformers'`.
 - Removed logging ability from `EventBus`.
