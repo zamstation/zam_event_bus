@@ -1,7 +1,9 @@
 # Event Bus
 
-State Management Package  
-  
+A State Management Package for flutter. 
+
+Use it in conjunction with [zam_event_bus_provider](https://pub.dev/packages/zam_event_bus_provider).
+
 [![Version](https://img.shields.io/pub/v/zam_event_bus?color=%234287f5)](https://pub.dev/packages/zam_event_bus)
 [![Build](https://github.com/zamstation/zam_event_bus/actions/workflows/build.yaml/badge.svg)](https://github.com/zamstation/zam_event_bus/actions/workflows/build.yaml)
 [![Stars](https://img.shields.io/github/stars/zamstation/zam_event_bus.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/zamstation/zam_event_bus/stargazers)
@@ -18,15 +20,33 @@ Check out all the components in detail [here](https://pub.dev/documentation/zam_
 
 ## How to use
 
+***INFO:** For flutter usage and providing `EventBus` to widgets, checkout the [zam_event_bus_provider](https://pub.dev/packages/zam_event_bus_provider) package.*
+
+### Step 1: Create the bus
 ```dart
 final bus = EventBus([
-  EventTransformer(SomeEvent, (event) => SomeOtherEvent()),
-  EventMultiplier.direct(SomeOtherEvent, [SomeOtherEvent1(), SomeOtherEvent2()]),
+  EventTransformer(HeightSliderDraggedEvent, (event) => HeightProvidedEvent(event.value)),
+  EventTransformer(HeightInputTextChangedEvent, (event) => HeightProvidedEvent(event.value)),
+  EventTransformer(WeightSliderDraggedEvent, (event) => WeightProvidedEvent(event.value)),
+  EventTransformer(WeightInputTextChangedEvent, (event) => WeightProvidedEvent(event.value)),
+  EventTransformer(HeightProvidedEvent, (event) => Bmi.fromHeight(event.value)),
+  EventTransformer(WeightProvidedEvent, (event) => Bmi.fromWeight(event.value)),
 ]);
-bus.publish(SomeEvent());
-final sub = bus.select<SomeOtherEvent2>().listen(print); // Instance of 'SomeOtherEvent2'
+```
 
-await Future.delayed(Duration(seconds: 1));
+### Step 2: Publish Events
+```dart
+bus.publish(HeightSliderDraggedEvent(1.78));
+```
+
+### Step 3: Select Events
+
+```dart
+final sub = bus.select<Bmi>().listen((event) => print(event.value)); // prints bmi value
+```
+
+### Step 4: Dispose the bus
+```dart
 await sub.cancel();
 await bus.dispose();
 ```

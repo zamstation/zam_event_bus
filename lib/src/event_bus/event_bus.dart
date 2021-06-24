@@ -3,6 +3,7 @@ import 'package:zam_core/zam_core.dart';
 
 import '../event_transformer/event_transformer.dart';
 import '../store/store.dart';
+import 'logging_event_bus/logging.event_bus.dart';
 
 ///
 /// [EventBus] is a stream based solution to remove dependencies between elements.
@@ -40,6 +41,12 @@ class EventBus implements AsyncDisposable {
   Stream<Object> get stream => _controller.stream;
 
   ///
+  /// A list of transformers extracted from transformerMap.
+  ///
+  Iterable<EventTransformer> get transformers =>
+      _transformers.values.expand((element) => element);
+
+  ///
   /// EventBus will start listening to events when constructed.
   ///
   /// For deferred registration of transformers, use the register method.
@@ -48,6 +55,17 @@ class EventBus implements AsyncDisposable {
     registerTransformers(transformers ?? []);
     _startListenings();
   }
+
+  ///
+  /// Creates a copy from another bus.
+  ///
+  EventBus.from(EventBus other) : this(other.transformers.toList());
+
+  ///
+  /// Creates an [EventBus] with logging ability.
+  ///
+  factory EventBus.withLogger([List<EventTransformer>? transformers]) =>
+      LoggingEventBus(transformers);
 
   void _startListenings() {
     stream.listen(_transformEvent).addTo(_subscriptionManager);
@@ -79,7 +97,6 @@ class EventBus implements AsyncDisposable {
   /// Publishes a single message.
   ///
   EventBus publish(Object message) {
-    print('- [PUBLISHING] ${message.runtimeType}');
     _controller.add(message);
     return this;
   }
@@ -120,7 +137,6 @@ class EventBus implements AsyncDisposable {
   /// Saves message to store.
   ///
   EventBus save(Object message) {
-    print('- [SAVING] ${message.runtimeType}');
     store.save(message);
     return this;
   }
@@ -172,7 +188,6 @@ class EventBus implements AsyncDisposable {
   /// Selects a message of type `T`.
   ///
   Stream<T> select<T extends Object>() {
-    print('- [SELECTING] ${T}');
     return stream.whereType<T>();
   }
 
