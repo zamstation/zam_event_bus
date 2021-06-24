@@ -9,10 +9,11 @@ import '../event_transformer.dart';
 class SavingEventTransformer<EVENT extends Object>
     implements EventTransformer<EVENT> {
   @override
-  final Type key;
+  final Type key = EVENT;
   final ParameterizedCallback<EVENT, Object> _transformFunction;
 
-  const SavingEventTransformer(this.key, this._transformFunction);
+  SavingEventTransformer(ParameterizedCallback<EVENT, Object> transformFunction)
+      : _transformFunction = transformFunction;
 
   @override
   void execute(EVENT event, EventBus bus) {

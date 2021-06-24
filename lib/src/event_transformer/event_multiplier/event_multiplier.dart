@@ -8,13 +8,14 @@ import '../event_transformer.dart';
 ///
 class EventMultiplier<EVENT extends Object> implements EventTransformer<EVENT> {
   @override
-  final Type key;
+  final Type key = EVENT;
   final ParameterizedCallback<EVENT, List<Object>> _transformFunction;
 
-  const EventMultiplier(this.key, this._transformFunction);
+  EventMultiplier(ParameterizedCallback<EVENT, List<Object>> transformFunction)
+      : _transformFunction = transformFunction;
 
   EventMultiplier.direct(Type key, List<Object> targetEvents)
-      : this(key, (event) => targetEvents);
+      : this((event) => targetEvents);
 
   @override
   void execute(EVENT event, EventBus bus) {

@@ -12,10 +12,12 @@ import '../event_transformer.dart';
 class ReactiveEventTransformer<EVENT extends Object>
     implements EventTransformer<EVENT> {
   @override
-  final Type key;
+  final Type key = EVENT;
   final ParameterizedCallback<EVENT, Stream<Object>> _transformFunction;
 
-  const ReactiveEventTransformer(this.key, this._transformFunction);
+  ReactiveEventTransformer(
+      ParameterizedCallback<EVENT, Stream<Object>> transformFunction)
+      : _transformFunction = transformFunction;
 
   @override
   void execute(EVENT event, EventBus bus) {

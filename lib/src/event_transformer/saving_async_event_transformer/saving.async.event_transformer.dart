@@ -1,7 +1,7 @@
 import 'package:zam_core/zam_core.dart';
 
 import '../../event_bus/event_bus.dart';
-import 'async.event_transformer.dart';
+import '../async_event_transformer/async.event_transformer.dart';
 
 ///
 /// - Listens to an event
@@ -13,10 +13,12 @@ import 'async.event_transformer.dart';
 class SavingAsyncEventTransformer<EVENT extends Object>
     implements AsyncEventTransformer<EVENT> {
   @override
-  final Type key;
+  final Type key = EVENT;
   final ParameterizedCallback<EVENT, Future<Object>> _transformFunction;
 
-  const SavingAsyncEventTransformer(this.key, this._transformFunction);
+  SavingAsyncEventTransformer(
+      ParameterizedCallback<EVENT, Future<Object>> transformFunction)
+      : _transformFunction = transformFunction;
 
   @override
   void execute(EVENT event, EventBus bus) {

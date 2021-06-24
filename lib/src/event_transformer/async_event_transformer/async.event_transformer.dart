@@ -12,10 +12,12 @@ import '../event_transformer.dart';
 class AsyncEventTransformer<EVENT extends Object>
     implements EventTransformer<EVENT> {
   @override
-  final Type key;
+  final Type key = EVENT;
   final ParameterizedCallback<EVENT, Future<Object>> _transformFunction;
 
-  const AsyncEventTransformer(this.key, this._transformFunction);
+  AsyncEventTransformer(
+      ParameterizedCallback<EVENT, Future<Object>> transformFunction)
+      : _transformFunction = transformFunction;
 
   @override
   void execute(EVENT event, EventBus bus) {
