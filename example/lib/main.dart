@@ -33,7 +33,7 @@ void main() async {
     // weight value is extracted from the event,
     // height value is retrieved from the store,
     // BmiRequestedEvent is prepared and published.
-    CustomEventTranformer<WeightProvidedEvent>((event, bus) {
+    CustomEventTransformer<WeightProvidedEvent>((event, bus) {
       final weight = event.value;
       final height = bus.selectFromStore<HeightProvidedEvent>().value;
       final newEvent = BmiRequestedEvent(weight, height);
@@ -44,7 +44,7 @@ void main() async {
     // height value is extracted from the event,
     // weight value is retrieved from the store,
     // BmiRequestedEvent is prepared and published.
-    CustomEventTranformer<HeightProvidedEvent>((event, bus) {
+    CustomEventTransformer<HeightProvidedEvent>((event, bus) {
       final weight = bus.selectFromStore<WeightProvidedEvent>().value;
       final height = event.value;
       final newEvent = BmiRequestedEvent(weight, height);

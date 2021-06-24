@@ -4,13 +4,13 @@ import '../event_transformer.dart';
 ///
 /// `EventBus` is made available in the `transformFunction`.
 ///
-class CustomEventTranformer<EVENT extends Object>
+class CustomEventTransformer<EVENT extends Object>
     implements EventTransformer<EVENT> {
   @override
   final Type key = EVENT;
   final void Function(EVENT event, EventBus bus) _transformerFunction;
 
-  CustomEventTranformer(
+  CustomEventTransformer(
       void Function(EVENT event, EventBus bus) transformerFunction)
       : _transformerFunction = transformerFunction;
 
