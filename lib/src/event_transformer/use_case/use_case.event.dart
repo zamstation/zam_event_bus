@@ -1,0 +1,3 @@
+class UseCaseEvent {
+  const UseCaseEvent();
+}

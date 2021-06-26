@@ -1,38 +1,24 @@
-import 'package:zam_core/zam_core.dart';
+import 'package:zam_core/callback.dart';
 
 import '../event_bus/event_bus.dart';
-import 'async_event_transformer/async.event_transformer.dart';
-import 'event_multiplier/event_multiplier.dart';
-import 'reactive_event_transformer/reactive.event_transformer.dart';
+import 'wrapped.event_transformer.dart';
 
 ///
 /// Transforms an event to another event based on the strategy provided.
 ///
-class EventTransformer<EVENT extends Object> {
-  final Type key = EVENT;
-  final ParameterizedCallback<EVENT, Object> _transformFunction;
+abstract class EventTransformer<EVENT extends Object,
+    NEW_EVENT extends Object> {
+  Type get key => EVENT;
 
-  EventTransformer(ParameterizedCallback<EVENT, Object> transformFunction)
-      : _transformFunction = transformFunction;
+  const EventTransformer();
 
-  factory EventTransformer.multiply(
-          ParameterizedCallback<EVENT, List<Object>> transformFunction) =>
-      EventMultiplier(transformFunction);
+  factory EventTransformer.fromFn(
+          ParameterizedCallback<EVENT, NEW_EVENT> transformFunction) =>
+      WrappedEventTransformer(transformFunction);
 
-  factory EventTransformer.async(
-    Type key,
-    ParameterizedCallback<EVENT, Future<Object>> transformFunction,
-  ) =>
-      AsyncEventTransformer(transformFunction);
+  NEW_EVENT execute(EVENT event, EventBus bus);
 
-  factory EventTransformer.stream(
-    Type key,
-    ParameterizedCallback<EVENT, Stream<Object>> transformFunction,
-  ) =>
-      ReactiveEventTransformer(transformFunction);
-
-  void execute(EVENT event, EventBus bus) {
-    final newEvent = _transformFunction(event);
+  void publish(NEW_EVENT newEvent, EventBus bus) {
     bus.publish(newEvent);
   }
 }

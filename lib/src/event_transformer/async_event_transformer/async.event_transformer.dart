@@ -1,7 +1,8 @@
-import 'package:zam_core/zam_core.dart';
+import 'package:zam_core/callback.dart';
 
 import '../../event_bus/event_bus.dart';
 import '../event_transformer.dart';
+import 'wrapped.async.event_transformer.dart';
 
 ///
 /// - Listens to an event
@@ -9,19 +10,17 @@ import '../event_transformer.dart';
 /// - Resolves the future
 /// - Publishes the message
 ///
-class AsyncEventTransformer<EVENT extends Object>
-    implements EventTransformer<EVENT> {
-  @override
-  final Type key = EVENT;
-  final ParameterizedCallback<EVENT, Future<Object>> _transformFunction;
+abstract class AsyncEventTransformer<EVENT extends Object,
+        NEW_EVENT extends Object>
+    extends EventTransformer<EVENT, Future<NEW_EVENT>> {
+  const AsyncEventTransformer();
 
-  AsyncEventTransformer(
-      ParameterizedCallback<EVENT, Future<Object>> transformFunction)
-      : _transformFunction = transformFunction;
+  factory AsyncEventTransformer.fromFn(
+          ParameterizedCallback<EVENT, Future<NEW_EVENT>> transformFunction) =>
+      WrappedAsyncEventTransformer(transformFunction);
 
   @override
-  void execute(EVENT event, EventBus bus) {
-    final future = _transformFunction(event);
-    bus.publishFromFuture(future);
+  void publish(Future<NEW_EVENT> newEvent, EventBus bus) {
+    bus.publishFromFuture(newEvent);
   }
 }

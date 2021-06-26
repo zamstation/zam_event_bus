@@ -25,30 +25,24 @@ Check out all the components in detail [here](https://pub.dev/documentation/zam_
 ### Step 1: Create the bus
 ```dart
 final bus = EventBus([
-  EventTransformer(HeightSliderDraggedEvent, (event) => HeightProvidedEvent(event.value)),
-  EventTransformer(HeightInputTextChangedEvent, (event) => HeightProvidedEvent(event.value)),
-  EventTransformer(WeightSliderDraggedEvent, (event) => WeightProvidedEvent(event.value)),
-  EventTransformer(WeightInputTextChangedEvent, (event) => WeightProvidedEvent(event.value)),
-  EventTransformer(HeightProvidedEvent, (event) => Bmi.fromHeight(event.value)),
-  EventTransformer(WeightProvidedEvent, (event) => Bmi.fromWeight(event.value)),
+  EventTransformer.fromFn((HeightSliderDraggedEvent event) => HeightProvidedEvent(event.value)),
+  EventTransformer.fromFn((HeightInputTextChangedEvent event) => HeightProvidedEvent(event.value)),
+  EventTransformer.fromFn((WeightSliderDraggedEvent event) => WeightProvidedEvent(event.value)),
+  EventTransformer.fromFn((WeightInputTextChangedEvent event) => WeightProvidedEvent(event.value)),
+  EventTransformer.fromFn((HeightProvidedEvent event) => Bmi.fromHeight(event.value)),
+  EventTransformer.fromFn((WeightProvidedEvent event) => Bmi.fromWeight(event.value)),
 ]);
 ```
 
-### Step 2: Publish Events
+### Step 2: Publish events
 ```dart
 bus.publish(HeightSliderDraggedEvent(1.78));
 ```
 
-### Step 3: Select Events
+### Step 3: Select and listen to events
 
 ```dart
 final sub = bus.select<Bmi>().listen((event) => print(event.value)); // prints bmi value
-```
-
-### Step 4: Dispose the bus
-```dart
-await sub.cancel();
-await bus.dispose();
 ```
 
 To learn more, move on to the [example section](https://pub.dev/packages/zam_event_bus/example) or check out this dedicated [example in github](https://github.com/zamstation/zam_event_bus/blob/main/example/lib/main.dart).

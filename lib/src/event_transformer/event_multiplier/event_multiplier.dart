@@ -1,25 +1,22 @@
-import 'package:zam_core/zam_core.dart';
+import 'package:zam_core/callback.dart';
 
 import '../../event_bus/event_bus.dart';
 import '../event_transformer.dart';
+import 'wrapped.event_multiplier.dart';
 
 ///
 /// Transforms an event to multiple events.
 ///
-class EventMultiplier<EVENT extends Object> implements EventTransformer<EVENT> {
-  @override
-  final Type key = EVENT;
-  final ParameterizedCallback<EVENT, List<Object>> _transformFunction;
+abstract class EventMultiplier<EVENT extends Object>
+    extends EventTransformer<EVENT, List<Object>> {
+  const EventMultiplier();
 
-  EventMultiplier(ParameterizedCallback<EVENT, List<Object>> transformFunction)
-      : _transformFunction = transformFunction;
-
-  EventMultiplier.direct(Type key, List<Object> targetEvents)
-      : this((event) => targetEvents);
+  factory EventMultiplier.fromFn(
+          ParameterizedCallback<EVENT, List<Object>> transformFunction) =>
+      WrappedEventMultiplier(transformFunction);
 
   @override
-  void execute(EVENT event, EventBus bus) {
-    final list = _transformFunction(event);
-    bus.publishMany(list);
+  void publish(List<Object> newEvent, EventBus bus) {
+    bus.publishMany(newEvent);
   }
 }

@@ -76,8 +76,10 @@ class EventBus implements AsyncDisposable {
 
     if (!_transformers.containsKey(key)) return;
 
-    _transformers[key]!
-        .forEach((transformer) => transformer.execute(event, this));
+    _transformers[key]!.forEach((transformer) {
+      final newEvent = transformer.execute(event, this);
+      transformer.publish(newEvent, this);
+    });
   }
 
   ///

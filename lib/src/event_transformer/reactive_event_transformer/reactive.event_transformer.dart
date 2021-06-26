@@ -1,7 +1,8 @@
-import 'package:zam_core/zam_core.dart';
+import 'package:zam_core/callback.dart';
 
 import '../../event_bus/event_bus.dart';
 import '../event_transformer.dart';
+import 'wrapped.reactive.event_transformer.dart';
 
 ///
 /// - Listens to an event
@@ -9,19 +10,17 @@ import '../event_transformer.dart';
 /// - Listens to the stream
 /// - Publishes the message as the stream emits
 ///
-class ReactiveEventTransformer<EVENT extends Object>
-    implements EventTransformer<EVENT> {
-  @override
-  final Type key = EVENT;
-  final ParameterizedCallback<EVENT, Stream<Object>> _transformFunction;
+abstract class ReactiveEventTransformer<EVENT extends Object,
+        NEW_EVENT extends Object>
+    extends EventTransformer<EVENT, Stream<NEW_EVENT>> {
+  const ReactiveEventTransformer();
 
-  ReactiveEventTransformer(
-      ParameterizedCallback<EVENT, Stream<Object>> transformFunction)
-      : _transformFunction = transformFunction;
+  factory ReactiveEventTransformer.fromFn(
+          ParameterizedCallback<EVENT, Stream<NEW_EVENT>> transformFunction) =>
+      WrappedReactiveEventTransformer(transformFunction);
 
   @override
-  void execute(EVENT event, EventBus bus) {
-    final stream = _transformFunction(event);
-    bus.publishFromStream(stream, key.toString());
+  void publish(Stream<NEW_EVENT> newEvent, EventBus bus) {
+    bus.publishFromStream(newEvent, key.toString());
   }
 }
