@@ -1,3 +1,10 @@
+# 0.5.0
+- Added the following architecture related components:
+  - `UserInterface`.
+  - `Application`.
+  - `BasicUserInterface`.
+  - `BasicApplication`.
+
 # 0.4.0
 - **BREAKING:** Renamed all transformers to prefix `Wrapped`.
 - Added new custom abstract transformers.
