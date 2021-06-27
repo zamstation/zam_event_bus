@@ -10,5 +10,6 @@ export 'use_case/use_case.dart';
 export 'use_case/use_case.event.dart';
 export 'use_case/use_case_failed.event.dart';
 export 'use_case/use_case_succeeded.event.dart';
+export 'view_model_mapper/view_model_mapper.dart';
 export 'wrapped.event_transformer.dart';
 export 'wrapped.saving.event_transformer.dart';
