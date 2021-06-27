@@ -1,3 +1,15 @@
+# 0.4.0
+- **BREAKING:** Renamed all transformers to prefix `Wrapped`.
+- Added new custom abstract transformers.
+- Added the following utility transformers.
+  - `UseCase`
+  - `AsyncUseCase`
+  - `ReactiveUseCase`
+  - `SavingUseCase`
+  - `SavingAsyncUseCase`
+  - `SavingReactiveUseCase`
+  - `ViewModelMapper`
+
 # 0.3.0
 - **BREAKING:** Fixed spelling mistake in `CustomTransformer` class name.
 
