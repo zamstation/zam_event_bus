@@ -1,3 +1,9 @@
+# 0.6.0
+- Added composition layer utilities.
+  - `Composer`
+  - `ComposerConfig`
+  - `Environment`
+
 # 0.5.0
 - Added the following architecture related components:
   - `UserInterface`.
