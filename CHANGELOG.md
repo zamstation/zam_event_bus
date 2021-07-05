@@ -1,3 +1,7 @@
+# 0.7.0
+- `Composer` now returns a `Future`.
+- `EventMultiplier` is now an alias to `ListEventTransformer`.
+
 # 0.6.0
 - Added composition layer utilities.
   - `Composer`
