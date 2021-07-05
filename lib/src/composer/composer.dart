@@ -15,9 +15,9 @@ abstract class Composer {
   ///
   /// Builds and runs the app
   ///
-  void runApp() {
+  Future<Object?> runApp() async {
     final application = buildApp();
-    application.initialize();
-    application.run();
+    await application.initialize();
+    return application.run();
   }
 }
