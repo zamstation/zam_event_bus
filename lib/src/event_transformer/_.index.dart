@@ -1,7 +1,9 @@
 export 'async_event_transformer/async.event_transformer.dart';
 export 'async_event_transformer/saving.async.event_transformer.dart';
-export 'event_multiplier/event_multiplier.dart';
-export 'event_multiplier/saving.event_multiplier.dart';
+export 'list_event_transformer/list.event_transformer.dart';
+export 'list_event_transformer/saving.list.event_transformer.dart';
+export 'list_event_transformer/wrapped.list.event_transformer.dart';
+export 'list_event_transformer/wrapped.saving.list.event_transformer.dart';
 export 'event_transformer.dart';
 export 'reactive_event_transformer/reactive.event_transformer.dart';
 export 'reactive_event_transformer/saving.reactive.event_transformer.dart';
