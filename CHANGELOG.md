@@ -1,3 +1,9 @@
+# 0.8.0
+- **BREAKING:** Renamed `Composer.buildApp` to `Composer.build`.
+- **BREAKING:** Renamed `Composer.runApp` to `Composer.run`.
+- Updated dependency: `zam_core 0.6.0`
+- Updated dependency: `zam_command_pattern 0.2.0`
+
 # 0.7.0
 - `Composer` now returns a `Future`.
 - `EventMultiplier` is now an alias to `ListEventTransformer`.
