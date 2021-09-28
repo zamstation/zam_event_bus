@@ -12,6 +12,7 @@ class WrappedListEventTransformer<EVENT extends Object>
 
   const WrappedListEventTransformer(this._transformFunction);
 
+  @override
   List<Object> execute(EVENT event, EventBus bus) {
     return _transformFunction(event);
   }

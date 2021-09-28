@@ -54,8 +54,9 @@ class Store {
   ///
   T get<T extends Object>() {
     final key = T;
-    if (doesNotContain(key))
+    if (doesNotContain(key)) {
       throw ObjectNotFoundInStoreException(key.toString());
+    }
 
     final object = _objects[key]! as T;
     return object;

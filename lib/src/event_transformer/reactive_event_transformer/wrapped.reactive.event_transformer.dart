@@ -16,6 +16,7 @@ class WrappedReactiveEventTransformer<EVENT extends Object,
 
   const WrappedReactiveEventTransformer(this._transformFunction);
 
+  @override
   Stream<NEW_EVENT> execute(EVENT event, EventBus bus) {
     return _transformFunction(event);
   }

@@ -89,10 +89,12 @@ class BmiCalculateFailedEvent extends UseCaseFailedEvent {
 /// Exceptions
 ///
 class InvalidWeightException implements Exception {
+  @override
   toString() => 'Weight must be positive';
 }
 
 class InvalidHeightException implements Exception {
+  @override
   toString() => 'Height must be positive';
 }
 
@@ -110,6 +112,7 @@ class Bmi {
     value = weight / (height * height);
   }
 
+  @override
   toString() => value.toStringAsFixed(2);
 }
 
@@ -162,12 +165,13 @@ class CalculateBmiUseCase extends UseCase<BmiInputProvidedEvent> {
       final bmi = Bmi(event.weight, event.height);
       return BmiCalculatedEvent(bmi);
     } catch (exception) {
-      if (exception is InvalidWeightException)
+      if (exception is InvalidWeightException) {
         return BmiCalculateFailedEvent(exception);
-      else if (exception is InvalidHeightException)
+      } else if (exception is InvalidHeightException) {
         return BmiCalculateFailedEvent(exception);
-      else
-        throw exception;
+      } else {
+        rethrow;
+      }
     }
   }
 }

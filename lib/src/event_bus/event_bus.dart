@@ -76,22 +76,22 @@ class EventBus implements AsyncDisposable {
 
     if (!_transformers.containsKey(key)) return;
 
-    _transformers[key]!.forEach((transformer) {
+    for (final transformer in _transformers[key]!) {
       final newEvent = transformer.execute(event, this);
       transformer.publish(newEvent, this);
-    });
+    }
   }
 
   ///
   /// Registered transformers will run when a source event is hit.
   ///
   EventBus registerTransformers(List<EventTransformer> transformers) {
-    transformers.forEach((transformer) {
+    for (final transformer in transformers) {
       final key = transformer.key;
       _transformers.containsKey(key)
           ? _transformers[key]!.add(transformer)
           : _transformers[key] = [transformer];
-    });
+    }
     return this;
   }
 
@@ -107,9 +107,9 @@ class EventBus implements AsyncDisposable {
   /// Publishes multiple messages.
   ///
   EventBus publishMany(Iterable<Object> messageList) {
-    messageList.forEach((message) {
+    for (final message in messageList) {
       publish(message);
-    });
+    }
     return this;
   }
 

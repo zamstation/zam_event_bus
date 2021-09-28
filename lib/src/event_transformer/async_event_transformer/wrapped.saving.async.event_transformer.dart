@@ -17,6 +17,7 @@ class WrappedSavingAsyncEventTransformer<EVENT extends Object,
 
   const WrappedSavingAsyncEventTransformer(this._transformFunction);
 
+  @override
   Future<NEW_EVENT> execute(EVENT event, EventBus bus) {
     return _transformFunction(event);
   }

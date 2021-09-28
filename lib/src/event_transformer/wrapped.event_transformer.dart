@@ -12,6 +12,7 @@ class WrappedEventTransformer<EVENT extends Object, NEW_EVENT extends Object>
 
   const WrappedEventTransformer(this._transformFunction);
 
+  @override
   NEW_EVENT execute(EVENT event, EventBus bus) {
     return _transformFunction(event);
   }

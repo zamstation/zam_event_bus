@@ -15,10 +15,11 @@ class StoreTest extends TestGroup {
 
   StoreTest() : super.empty();
 
-  final tests = [
-    DoesNotContainTest(),
-    SaveTest(),
-  ];
+  @override
+  get tests => [
+        DoesNotContainTest(),
+        SaveTest(),
+      ];
 }
 
 class DoesNotContainTest extends Test<Type, bool> {

@@ -13,20 +13,23 @@ class LoggingEventBus extends EventBus {
   ///
   LoggingEventBus.fromEventBus(EventBus bus) : super.from(bus);
 
+  @override
   LoggingEventBus publish(Object message) {
     print('- [PUBLISHING] ${message.runtimeType}');
     super.publish(message);
     return this;
   }
 
+  @override
   LoggingEventBus save(Object message) {
     print('- [SAVING] ${message.runtimeType}');
     super.save(message);
     return this;
   }
 
+  @override
   Stream<T> select<T extends Object>() {
-    print('- [SELECTING] ${T}');
+    print('- [SELECTING] $T');
     return super.select<T>();
   }
 }
