@@ -7,19 +7,15 @@ assignees: amsakanna
 
 ---
 
-## Meta
-| Name | Description |
-| -----| ----------- |
-| Version | x.x.x |
-| Scope | Class/File/Dir |
-
-## Problem Statement
-A clear and concise description of what the problem is.
-
-## Proposed Solution
-A clear and concise description of what you want to happen.
+## Description
+A clear and concise description of the feature.
 
 ## New Components
 1. Component 1
 2. Component 2
 3. Component 3
+
+## Changes
+1. 
+2. 
+3. 

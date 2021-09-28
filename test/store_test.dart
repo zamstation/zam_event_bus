@@ -30,11 +30,9 @@ class DoesNotContainTest extends Test<Type, bool> {
 
   @override
   final cases = [
-    ValueTestCase(
-      when: 'When an object is present',
-      then: 'doesNotContain should return false.',
+    BooleanTestCase.falsy(
+      when: 'When an object is present, doesNotContain',
       input: SomeOtherEvent,
-      output: false,
     )
   ];
 }

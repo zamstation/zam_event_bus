@@ -7,12 +7,6 @@ assignees: amsakanna
 
 ---
 
-## Meta
-| Name | Description |
-| -----| ----------- |
-| Version | x.x.x |
-| Scope | Class/File/Dir |
-
 ## Description
 A clear and concise description of what the bug is.
 
@@ -26,3 +20,8 @@ A clear and concise description of what happened.
 
 ### Expected result
 A clear and concise description of what you expected to happen.
+
+## Changes
+1. 
+2. 
+3. 

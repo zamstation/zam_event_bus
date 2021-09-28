@@ -7,12 +7,6 @@ assignees: amsakanna
 
 ---
 
-## Meta
-| Name | Description |
-| -----| ----------- |
-| Version | x.x.x |
-| Scope | file/dir |
-
 ## Changes
 1. 
 2. 

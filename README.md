@@ -4,17 +4,12 @@ A State Management Package for flutter.
 
 Use it in conjunction with [zam_event_bus_provider](https://pub.dev/packages/zam_event_bus_provider).
 
-[![Version](https://img.shields.io/pub/v/zam_event_bus?color=%234287f5)](https://pub.dev/packages/zam_event_bus)
-[![Build](https://github.com/zamstation/zam_event_bus/actions/workflows/build.yaml/badge.svg)](https://github.com/zamstation/zam_event_bus/actions/workflows/build.yaml)
-[![Stars](https://img.shields.io/github/stars/zamstation/zam_event_bus.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/zamstation/zam_event_bus/stargazers)
-[![License](https://img.shields.io/github/license/zamstation/zam_event_bus)](https://pub.dev/packages/zam_event_bus/license)
-
 ## What's inside the package
 
 Includes the following core components.
 
-  * [EventBus](https://pub.dev/documentation/zam_event_bus/latest/zam_event_bus/EventBus-class.html)
-  * [EventTransformer](https://pub.dev/documentation/zam_event_bus/latest/zam_event_bus/EventTransformer-class.html)
+- [EventBus](https://pub.dev/documentation/zam_event_bus/latest/zam_event_bus/EventBus-class.html)
+- [EventTransformer](https://pub.dev/documentation/zam_event_bus/latest/zam_event_bus/EventTransformer-class.html)
 
 Check out all the components in detail [here](https://pub.dev/documentation/zam_event_bus/latest/zam_event_bus/zam_event_bus-library.html)
 
@@ -45,7 +40,13 @@ bus.publish(HeightSliderDraggedEvent(1.78));
 final sub = bus.select<Bmi>().listen((event) => print(event.value)); // prints bmi value
 ```
 
-To learn more, move on to the [example section](https://pub.dev/packages/zam_event_bus/example) or check out this dedicated [example in github](https://github.com/zamstation/zam_event_bus/blob/main/example/lib/main.dart).
+To learn more, move on to the [example section](https://pub.dev/packages/zam_event_bus/example) or check out these dedicated [examples in github](https://github.com/zamstation/zam_event_bus/blob/main/example/lib).
+
+## Status
+[![Build](https://github.com/zamstation/zam_event_bus/actions/workflows/build_workflow.yaml/badge.svg)](https://github.com/zamstation/zam_event_bus/actions/workflows/build_workflow.yaml)
 
 ## Contributors
-  * [Amsakanna](https://github.com/amsakanna)
+- [Amsakanna](https://github.com/amsakanna)
+
+## License
+[BSD 3-Clause License](https://github.com/zamstation/zam_event_bus/blob/main/LICENSE)

@@ -9,10 +9,7 @@ Provide the issue number of the issue that it fixes prefixed by #.
 - [ ] Minor
 - [x] Patch
 
-## Components Changed
+## Changes
 1. 
 2. 
 3. 
-
-## Checklist
-- [ ] Requires dependency update?
