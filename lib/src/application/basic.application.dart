@@ -1,6 +1,7 @@
 import 'package:zam_core/zam_core.dart';
-import 'package:zam_event_bus/zam_event_bus.dart';
 
+import '../event_bus/event_bus.dart';
+import '../event_transformer/event_transformer.dart';
 import '../user_interface/user_interface.dart';
 import 'application.dart';
 
@@ -26,20 +27,20 @@ abstract class BasicApplication implements Application {
 
   @override
   @mustCallSuper
-  initialize() async {
+  Future<void> initialize() async {
     eventBus.registerTransformers(eventTransformers);
     await userInterface.initialize();
   }
 
   @override
   @mustCallSuper
-  run() async {
+  Future<void> run() async {
     await userInterface.run();
   }
 
   @override
   @mustCallSuper
-  dispose() async {
+  Future<void> dispose() async {
     await userInterface.dispose();
     eventBus.dispose();
   }

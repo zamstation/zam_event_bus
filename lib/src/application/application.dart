@@ -1,6 +1,6 @@
 import 'package:zam_core/zam_core.dart';
-import 'package:zam_event_bus/zam_event_bus.dart';
 
+import '../event_bus/event_bus.dart';
 import '../user_interface/user_interface.dart';
 
 ///
