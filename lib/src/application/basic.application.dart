@@ -1,5 +1,3 @@
-import 'package:zam_core/zam_core.dart';
-
 import '../event_bus/event_bus.dart';
 import '../event_transformer/event_transformer.dart';
 import '../user_interface/user_interface.dart';
@@ -26,20 +24,17 @@ abstract class BasicApplication implements Application {
   const BasicApplication(this.userInterface, this.eventBus);
 
   @override
-  @mustCallSuper
   Future<void> initialize() async {
-    eventBus.registerTransformers(eventTransformers);
     await userInterface.initialize();
+    eventBus.registerTransformers(eventTransformers);
   }
 
   @override
-  @mustCallSuper
   Future<void> run() async {
     await userInterface.run();
   }
 
   @override
-  @mustCallSuper
   Future<void> dispose() async {
     await userInterface.dispose();
     eventBus.dispose();

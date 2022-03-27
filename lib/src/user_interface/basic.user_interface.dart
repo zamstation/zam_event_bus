@@ -1,5 +1,3 @@
-import 'package:zam_core/meta.dart';
-
 import '../event_bus/event_bus.dart';
 import '../event_transformer/event_transformer.dart';
 import 'user_interface.dart';
@@ -16,7 +14,6 @@ abstract class BasicUserInterface implements UserInterface {
   const BasicUserInterface(this.eventBus);
 
   @override
-  @mustCallSuper
   Future<void> initialize() async {
     eventBus.registerTransformers(eventTransformers);
   }
