@@ -1,6 +1,7 @@
-import 'package:zam_core/zam_core.dart';
+import 'package:zam_core/zam_core.dart' show mustCallSuper;
 
-import '../../zam_event_bus.dart';
+import '../event_bus/event_bus.dart';
+import '../event_transformer/event_transformer.dart';
 import 'user_interface.dart';
 
 ///
@@ -18,5 +19,6 @@ abstract class BasicUserInterface implements UserInterface {
   @mustCallSuper
   initialize() async {
     eventBus.registerTransformers(eventTransformers);
+    return null;
   }
 }
