@@ -1,3 +1,12 @@
+# 0.9.0
+- Dependency Updates:
+	- `flutter 3.0.0`
+	- `dart 2.17.0`
+	- `zam_core 0.7.0`
+	- `zam_command_pattern 0.3.0`
+	- `lints 2.0.0`
+	- `zam_test 0.5.0`
+
 # 0.8.0
 - **BREAKING:** Renamed `Composer.buildApp` to `Composer.build`.
 - **BREAKING:** Renamed `Composer.runApp` to `Composer.run`.
